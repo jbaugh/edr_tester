@@ -1,4 +1,6 @@
 require_relative 'activity_logger'
+require_relative 'system/details'
+
 require 'fileutils'
 
 class Files
@@ -41,14 +43,17 @@ class Files
   private
 
   def log_activity(activity_type, opts = {})
+    details = System::Details.new
+    pid = Process.pid
+
     entry = {
       timestamp: opts[:timestamp] || File.mtime(file_path).to_i,
       full_path: File.expand_path(file_path),
       activity: activity_type,
-      process_user: `ps -p #{Process.pid} -o user=`.strip,
-      process_name: `ps -p #{Process.pid} -o comm=`.strip,
-      process_command_line: `ps -p #{Process.pid} -o args=`.strip,
-      pid: Process.pid
+      process_user: details.process_user(pid),
+      process_name: details.process_name(pid),
+      process_command_line: details.process_command_line(pid),
+      pid: pid
     }
     ActivityLogger.new.log(entry.inspect)
   end
