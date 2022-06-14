@@ -23,5 +23,9 @@ module System
     def process_command_line(pid)
       `ps -p #{pid} -o args=`.strip
     end
+
+    def current_ip_address
+      `hostname -I | awk '{print $1}'`.strip
+    end
   end
 end
