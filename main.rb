@@ -15,6 +15,5 @@ process.start
 
 port = 80
 ip_address = Socket.getnameinfo(Socket.sockaddr_in(port, 'google.com'))
-# connections = Connections.new(ip_address.first, port)
-connections = Connections.new('google.com', port)
+connections = Connections.new(ip_address.first, port)
 connections.send_tcp("GET / HTTP/1.0\r\n\r\n")
