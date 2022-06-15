@@ -1,6 +1,8 @@
-require 'win32ole'
+require_relative 'os'
+
 require 'socket'
 require 'date'
+require 'win32ole' if System::Os.windows?
 
 module System
   class Windows
