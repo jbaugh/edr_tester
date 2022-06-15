@@ -1,9 +1,5 @@
 module System
   class Linux
-    def boot_time
-      File.read("/proc/stat")[/btime.*/].split.last.to_i rescue 0
-    end
-
     def process_start_time(pid)
       # source https://man7.org/linux/man-pages/man5/proc.5.html
       stat_data = `cat /proc/#{pid}/stat`.split
@@ -26,6 +22,12 @@ module System
 
     def current_ip_address
       `hostname -I | awk '{print $1}'`.strip
+    end
+
+    private
+
+    def boot_time
+      File.read("/proc/stat")[/btime.*/].split.last.to_i rescue 0
     end
   end
 end

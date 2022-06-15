@@ -35,6 +35,6 @@ class Connections
       protocol: protocol,
       data_amount: data.size,
     }
-    ActivityLogger.new.log(entry.inspect)
+    ActivityLogger.new.log(entry)
   end
 end

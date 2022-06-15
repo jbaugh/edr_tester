@@ -55,6 +55,6 @@ class Files
       process_command_line: details.process_command_line(pid),
       pid: pid
     }
-    ActivityLogger.new.log(entry.inspect)
+    ActivityLogger.new.log(entry)
   end
 end

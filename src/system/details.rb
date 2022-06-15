@@ -1,4 +1,5 @@
 require_relative 'linux'
+require_relative 'windows'
 
 module System
   class Details
